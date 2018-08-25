@@ -10,6 +10,7 @@
     using Autofac.Integration.Mvc;
     using Moq;
     using SportsShop.Domain.Abstract;
+    using SportsShop.Domain.Concrete;
     using SportsShop.Domain.Entities;
     using SportsShop.Domain.Mock;
     using SportsShop.WebApp.Controllers;
@@ -31,7 +32,8 @@
                 new Product{Name="Running Shoes", Price=199 }
             });
 
-            builder.RegisterInstance<IProductsRepository>(mock.Object);
+            //builder.RegisterInstance<IProductsRepository>(mock.Object);
+            builder.RegisterInstance<IProductsRepository>(new EFProductsRepository());
 
             /*
              * mock class
