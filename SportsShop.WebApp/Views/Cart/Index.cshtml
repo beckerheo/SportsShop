@@ -1,0 +1,60 @@
+﻿@model SportsShop.WebApp.Models.CartIndexViewModel
+@{
+    ViewBag.Title = "Sports Shop: Your Cart";
+}
+<h2>Your cart</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th class="text-right">Price</th>
+            <th class="text-right">Subtotal</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var line in Model.Cart.Lines)
+        {
+        <tr>
+            <td class="text-left">@line.Product.Name</td>
+            <td class="text-center">@line.Quantity</td>
+            <td class="text-right">@line.Product.Price.ToString("c")</td>
+            <td class="text-right">
+                @((line.Quantity * line.Product.Price).ToString("c"))
+            </td>
+            <td>
+                @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                {
+                <div class="pull-right">
+                    @Html.Hidden("ProductId", line.Product.ProductId)
+                    @Html.HiddenFor(x => x.ReturnUrl)
+                    <input type="submit" class="btn btn-sm btn-warning" value="Remove" />
+                </div>
+                }
+            </td>
+        </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-right">Total:</td>
+            <td class="text-right">
+                @Model.Cart.TotalValue.ToString("c")
+            </td>
+            <td>
+                @using (Html.BeginForm("ClearCart", "Cart"))
+                {
+                    <div class="pull-right">
+                        @Html.HiddenFor(x => x.ReturnUrl)
+                        <input type="submit" class="btn btn-sm btn-danger" value="Remove All" />
+                    </div>
+                }
+            </td>
+        </tr>
+    </tfoot>
+</table>
+<div class="text-center">
+    <a class="btn btn-primary" href="@Model.ReturnUrl">Continue shopping</a>
+    @Html.ActionLink("Checkout", "Checkout", null, new { @class = "btn btn-primary" })
+</div>

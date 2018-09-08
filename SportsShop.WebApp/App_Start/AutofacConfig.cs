@@ -34,6 +34,7 @@
 
             //builder.RegisterInstance<IProductsRepository>(mock.Object);
             builder.RegisterInstance<IProductsRepository>(new EFProductsRepository());
+            builder.RegisterInstance<IOrderProcessor>(new EmailOrderProcessor(new EmailSettings()));
 
             /*
              * mock class

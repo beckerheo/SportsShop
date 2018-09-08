@@ -8,6 +8,8 @@
     using System.Web.Routing;
     using Autofac;
     using Autofac.Integration.Mvc;
+    using SportsShop.Domain.Entities;
+    using SportsShop.WebApp.Infrastructure.Binders;
 
     public class MvcApplication : HttpApplication
     {
@@ -16,6 +18,8 @@
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             AutofacConfig.Register();
+
+            ModelBinders.Binders.Add(typeof(Cart), new CartModelBinder());
         }
     }
 }
