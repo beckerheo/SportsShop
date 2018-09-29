@@ -18,5 +18,15 @@
                 };
             }
         }
+
+        public Product DeleteProduct(int productId)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void SaveProduct(Product product)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

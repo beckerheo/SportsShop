@@ -16,7 +16,7 @@ namespace SportsShop.WebApp.Controllers
             repository = repo;
         }
 
-        public PartialViewResult Menu(string category = null)
+        public PartialViewResult Menu(string category = null, bool horizontalLayout = false)
         {
             ViewBag.SelectedCategory = category;
 
@@ -26,8 +26,9 @@ namespace SportsShop.WebApp.Controllers
                 .Select(x => x.Category)
                 .Distinct()
                 .OrderBy(x => x);
+            string viewName = "FlexMenu";
 
-            return PartialView(categories);
+            return PartialView(viewName, categories);
         }
     }
 }
