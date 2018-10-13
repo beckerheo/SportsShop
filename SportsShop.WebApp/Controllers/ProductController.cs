@@ -6,6 +6,7 @@
     using System.Web;
     using System.Web.Mvc;
     using SportsShop.Domain.Abstract;
+    using SportsShop.Domain.Entities;
     using SportsShop.WebApp.Models;
 
     public class ProductController : Controller
@@ -37,6 +38,21 @@
                 CurrentCategory = category
             };
             return View(model);
+        }
+
+        public FileContentResult GetImage(int productId)
+        {
+            Product prod = _repository
+                    .Products
+                    .FirstOrDefault(p => p.ProductId == productId);
+            if (prod != null)
+            {
+                return File(prod.ImageData, prod.ImageMimeType);
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

@@ -14,5 +14,6 @@ namespace SportsShop.Domain.Concrete
     public class EFDbContext : DbContext
     {
         public DbSet<Product> Products { get; set; }
+        public DbSet<Identity> Identities { get; set; }
     }
 }

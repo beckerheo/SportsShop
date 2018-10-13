@@ -29,15 +29,18 @@
             {
                 byte[] inputBytes = Encoding.UTF8.GetBytes(input);
 
-                byte[] hashBytes = md5.ComputeHash(inputBytes);
+                var hashBytes = md5.ComputeHash(inputBytes);
 
-                StringBuilder sb = new StringBuilder();
+                var s= Convert.ToBase64String(hashBytes);
+                return s;
 
-                for(int i = 0;i<hashBytes.Length;i++)
-                {
-                    sb.Append(hashBytes[i].ToString("X2"));
-                }
-                return sb.ToString();
+                //StringBuilder sb = new StringBuilder();
+
+                //for(int i = 0;i<hashBytes.Length;i++)
+                //{
+                //    sb.Append(hashBytes[i].ToString("X2"));
+                //}
+                //return sb.ToString();
             }
         }
     }

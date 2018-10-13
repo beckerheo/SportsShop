@@ -77,6 +77,7 @@
     <Compile Include="Concrete\EmailOrderProcessor.cs" />
     <Compile Include="Entities\Cart.cs" />
     <Compile Include="Entities\EmailSettings.cs" />
+    <Compile Include="Entities\Identity.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\ShippingDetails.cs" />
     <Compile Include="Migrations\201808251906543_InitialCreate.cs" />
@@ -86,6 +87,14 @@
     <Compile Include="Migrations\201809292100228_ModifyProductEntity.cs" />
     <Compile Include="Migrations\201809292100228_ModifyProductEntity.Designer.cs">
       <DependentUpon>201809292100228_ModifyProductEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810131851379_UpdateProduct_AddNewTable.cs" />
+    <Compile Include="Migrations\201810131851379_UpdateProduct_AddNewTable.Designer.cs">
+      <DependentUpon>201810131851379_UpdateProduct_AddNewTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810131914441_fixNameTypo.cs" />
+    <Compile Include="Migrations\201810131914441_fixNameTypo.Designer.cs">
+      <DependentUpon>201810131914441_fixNameTypo.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Mock\MockProductsRepository.cs" />
@@ -101,6 +110,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809292100228_ModifyProductEntity.resx">
       <DependentUpon>201809292100228_ModifyProductEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810131851379_UpdateProduct_AddNewTable.resx">
+      <DependentUpon>201810131851379_UpdateProduct_AddNewTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810131914441_fixNameTypo.resx">
+      <DependentUpon>201810131914441_fixNameTypo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
