@@ -8,6 +8,7 @@
     using SportsShop.Domain.Abstract;
     using SportsShop.Domain.Entities;
 
+    [Authorize]
     public class AdminController : Controller
     {
         private IProductsRepository repository;

@@ -14,6 +14,8 @@
     using SportsShop.Domain.Entities;
     using SportsShop.Domain.Mock;
     using SportsShop.WebApp.Controllers;
+    using SportsShop.WebApp.Infrastructure.Abstract;
+    using SportsShop.WebApp.Infrastructure.Concrete;
 
     public class AutofacConfig
     {
@@ -21,25 +23,29 @@
         {
             var builder = new ContainerBuilder();
 
+            #region Mock Usage
             /*
              * using mock libaray directly
              */
-            Mock<IProductsRepository> mock = new Mock<IProductsRepository>();
-            mock.Setup(m => m.Products).Returns(new List<Product>
-            {
-                new Product{Name="Football",Price=25 },
-                new Product{Name="Baseball",Price=15 },
-                new Product{Name="Running Shoes", Price=199 }
-            });
+            //Mock<IProductsRepository> mock = new Mock<IProductsRepository>();
+            //mock.Setup(m => m.Products).Returns(new List<Product>
+            //{
+            //    new Product{Name="Football",Price=25 },
+            //    new Product{Name="Baseball",Price=15 },
+            //    new Product{Name="Running Shoes", Price=199 }
+            //});
 
             //builder.RegisterInstance<IProductsRepository>(mock.Object);
-            builder.RegisterInstance<IProductsRepository>(new EFProductsRepository());
-            builder.RegisterInstance<IOrderProcessor>(new EmailOrderProcessor(new EmailSettings()));
 
             /*
              * mock class
              * builder.RegisterInstance<IProductsRepository>(new MockProductsRepository());
             */
+            #endregion
+
+            builder.RegisterInstance<IProductsRepository>(new EFProductsRepository());
+            builder.RegisterInstance<IOrderProcessor>(new EmailOrderProcessor(new EmailSettings()));
+            builder.RegisterInstance<IAuthProvider>(new FormsAuthProvider());
 
             builder.RegisterControllers(AppDomain.CurrentDomain.GetAssemblies());
             //builder.RegisterType(typeof(ProductController));
