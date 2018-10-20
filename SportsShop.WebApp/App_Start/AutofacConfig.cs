@@ -42,13 +42,14 @@
              * builder.RegisterInstance<IProductsRepository>(new MockProductsRepository());
             */
             #endregion
-
-            builder.RegisterInstance<IProductsRepository>(new EFProductsRepository());
-            builder.RegisterInstance<IOrderProcessor>(new EmailOrderProcessor(new EmailSettings()));
-            builder.RegisterInstance<IAuthProvider>(new FormsAuthProvider());
-
+            
             builder.RegisterControllers(AppDomain.CurrentDomain.GetAssemblies());
-            //builder.RegisterType(typeof(ProductController));
+
+            builder.RegisterInstance<IProductsRepository>(new EFProductsRepository()).PropertiesAutowired();
+            builder.RegisterInstance<IOrderProcessor>(new EmailOrderProcessor(new EmailSettings()));
+            builder.RegisterInstance<IAuthProvider>(new FormsAuthProvider()).PropertiesAutowired();
+
+            builder.RegisterType<EFDbContext>();
 
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

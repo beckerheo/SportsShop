@@ -10,24 +10,24 @@
 
     public class EFProductsRepository : IProductsRepository
     {
-        private EFDbContext context = new EFDbContext();
+        public EFDbContext _dbContext { get; set; }
 
         public IEnumerable<Product> Products
         {
             get
             {
-                return context.Products;
+                return _dbContext.Products;
             }
         }
 
         public Product DeleteProduct(int productId)
         {
-            Product dbEntry = context.Products.Find(productId);
+            Product dbEntry = _dbContext.Products.Find(productId);
 
             if (dbEntry != null)
             {
-                context.Products.Remove(dbEntry);
-                context.SaveChanges();
+                _dbContext.Products.Remove(dbEntry);
+                _dbContext.SaveChanges();
             }
             return dbEntry;
         }
@@ -36,11 +36,11 @@
         {
             if (product.ProductId == 0)
             {
-                context.Products.Add(product);
+                _dbContext.Products.Add(product);
             }
             else
             {
-                Product dbEntry = context.Products.Find(product.ProductId);
+                Product dbEntry = _dbContext.Products.Find(product.ProductId);
                 if (dbEntry != null)
                 {
                     dbEntry.Name = product.Name;
@@ -51,7 +51,7 @@
                     dbEntry.ImageMimeType = product.ImageMimeType;
                 }
             }
-            context.SaveChanges();
+            _dbContext.SaveChanges();
         }
     }
 }

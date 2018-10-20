@@ -8,16 +8,25 @@
     using SportsShop.WebApp.Infrastructure.Abstract;
     using System.Security.Cryptography;
     using System.Text;
+    using SportsShop.Domain.Concrete;
 
     public class FormsAuthProvider : IAuthProvider
     {
+        public EFDbContext _dbContext { get; set; }
+
         public bool Authenticate(string username, string password)
         {
-            bool result = FormsAuthentication.Authenticate(username, CreateMD5(password));
+            bool result = false;
+            var user = _dbContext.Identities.FirstOrDefault(i => i.Username.Equals(username));
 
-            if (result)
+            if(user != null)
             {
-                FormsAuthentication.SetAuthCookie(username, false);
+                result = user.PasswordHash.Equals(CreateMD5(password));
+
+                if (result)
+                {
+                    FormsAuthentication.SetAuthCookie(username, false);
+                }
             }
 
             return result;
@@ -31,16 +40,7 @@
 
                 var hashBytes = md5.ComputeHash(inputBytes);
 
-                var s= Convert.ToBase64String(hashBytes);
-                return s;
-
-                //StringBuilder sb = new StringBuilder();
-
-                //for(int i = 0;i<hashBytes.Length;i++)
-                //{
-                //    sb.Append(hashBytes[i].ToString("X2"));
-                //}
-                //return sb.ToString();
+                return Convert.ToBase64String(hashBytes);
             }
         }
     }

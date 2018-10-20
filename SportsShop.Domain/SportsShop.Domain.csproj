@@ -96,6 +96,10 @@
     <Compile Include="Migrations\201810131914441_fixNameTypo.Designer.cs">
       <DependentUpon>201810131914441_fixNameTypo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810132012362_UpdateIdentities.cs" />
+    <Compile Include="Migrations\201810132012362_UpdateIdentities.Designer.cs">
+      <DependentUpon>201810132012362_UpdateIdentities.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Mock\MockProductsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -116,6 +120,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810131914441_fixNameTypo.resx">
       <DependentUpon>201810131914441_fixNameTypo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810132012362_UpdateIdentities.resx">
+      <DependentUpon>201810132012362_UpdateIdentities.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
