@@ -1,4 +1,4 @@
-﻿namespace SportsShop.WebApp.Controllers
+﻿namespace SportsShop.WebApp.Areas.Admin.Controllers
 {
     using System;
     using System.Collections.Generic;
@@ -30,7 +30,7 @@
         [HttpPost]
         public ActionResult Edit(Product product, HttpPostedFileBase image = null)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 if (image != null)
                 {
